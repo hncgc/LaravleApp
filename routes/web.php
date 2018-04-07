@@ -24,4 +24,9 @@ Route::get('/myabout', function (){
 
 Route::get('articles', 'ArticlesController@index');
 
+Route::get('articles/create', 'ArticlesController@create');
+
 Route::get('articles/{id}', 'ArticlesController@show');
+
+Route::post('articles', 'ArticlesController@store');
+
