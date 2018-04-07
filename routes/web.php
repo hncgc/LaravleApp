@@ -21,3 +21,7 @@ Route::get('/myabout', function (){
     $name = "<span style=\"color:red\">Cheng Gongchun<span>";
     return view('sites.about')->with("name", $name);
 });
+
+Route::get('articles', 'ArticlesController@index');
+
+Route::get('articles/{id}', 'ArticlesController@show');

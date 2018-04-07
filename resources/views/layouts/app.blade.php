@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         html, body {
             background-color: #fff;
@@ -65,6 +66,10 @@
     </style>
 </head>
 <body>
-@yield('content')
+<div class="container">
+    @yield('content')
+</div>
+@yield('footer');
+
 </body>
 </html>
