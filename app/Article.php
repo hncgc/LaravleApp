@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
-//use Carbon\Carbon;
+//use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 class Article extends Model
 {

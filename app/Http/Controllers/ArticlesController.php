@@ -6,6 +6,7 @@ use App\Article;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\Resource;
 use Carbon\Carbon;
+use App\Http\Requests;
 
 class ArticlesController extends Controller
 {
@@ -57,6 +58,7 @@ class ArticlesController extends Controller
      * 保存表单数据
      * @param Request $request
      */
+    /*
     public function store(Request $request)
     {
         //接收post过来的数据
@@ -66,6 +68,12 @@ class ArticlesController extends Controller
         //$input = $request->all();
         //$input['published_at'] = Carbon::now();
         //Article::create($input);
+        $this->validate($request, ['title'=>'required|min:3', 'content'=>'required', 'published_at'=>'required']);
+        Article::create($request->all()); //在model中预处理published_at
+        return redirect('/articles');
+    }
+    */
+    public function store(Requests\CreateArticleRequest $request){
         Article::create($request->all()); //在model中预处理published_at
         return redirect('/articles');
     }
