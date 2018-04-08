@@ -11,7 +11,7 @@ class Article extends Model
     protected $fillable = ['title', 'content', 'published_at'];
 
     //作为Carbon对象的字段
-    protected $dates = ['published_at'];
+    protected $dates = ['published_at', 'created_at'];
 
     //预处理published_at
     public function setPublishedAtAttribute($date){

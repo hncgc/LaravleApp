@@ -13,4 +13,5 @@
         </article>
 
     @endforeach
+    <h3><a href="{{ url('articles/create') }}"> 发表文章 </a></h3>
 @endsection
