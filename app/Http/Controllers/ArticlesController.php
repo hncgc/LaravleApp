@@ -17,10 +17,12 @@ class ArticlesController extends Controller
     {
         //return "My Articles";
         //$articles = Article::all();
-        $articles = Article::latest()->get();
-//        return $articles;                    //下载
-//        return $articles->toArray();        //下载
-//        return Article::all()->toString();      //下载
+        //$articles = Article::latest()->get();
+        //$articles = Article::latest()->where('published_at', '<=', Carbon::new())->get();
+        $articles = Article::latest()->published()->get(); //published()调用model的scopePublished（）
+        //return $articles;                   //下载
+        //return $articles->toArray();        //下载
+        //return Article::all()->toString();  //下载
         return view('articles.index', compact('articles'));
     }
 
@@ -33,6 +35,10 @@ class ArticlesController extends Controller
     {
         $article = Article::findOrFail($id);
         //dd($article);
+        //dd($article->created_at);
+        //dd($article->created_at->year);
+        //dd($article->created_at->diffForHumans());
+        //dd($article->published_at->diffForHumans());
         if (is_null($article)) {
             abort('404');
         }
@@ -57,9 +63,10 @@ class ArticlesController extends Controller
         //存入数据库
         //重定向
         //dd($request->get('title'));
-        $input = $request->all();
-        $input['published_at'] = Carbon::now();
-        Article::create($input);
+        //$input = $request->all();
+        //$input['published_at'] = Carbon::now();
+        //Article::create($input);
+        Article::create($request->all()); //在model中预处理published_at
         return redirect('/articles');
     }
 }
