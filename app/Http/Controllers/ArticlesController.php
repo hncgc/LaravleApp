@@ -47,6 +47,8 @@ class ArticlesController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
@@ -55,7 +57,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * 保存表单数据
+     * Store a newly created resource in storage.
      * @param Request $request
      */
     /*
@@ -76,5 +78,43 @@ class ArticlesController extends Controller
     public function store(Requests\CreateArticleRequest $request){
         Article::create($request->all()); //在model中预处理published_at
         return redirect('/articles');
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.edit', compact('article'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Requests\CreateArticleRequest $request, $id)
+    {
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+        return redirect('/articles');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
