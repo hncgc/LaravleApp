@@ -22,11 +22,12 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     *
+     * 登录成功后跳转地址
      * @var string
      */
     protected $redirectTo = '/home';
-
+    // 退出后跳转地址
+    protected $redirectAfterLogout = '/login';
     /**
      * Create a new controller instance.
      *

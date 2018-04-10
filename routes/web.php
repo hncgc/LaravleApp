@@ -30,7 +30,9 @@ Route::get('articles/{id}/edit','ArticlesController@edit');
 */
 Route::resource('articles','ArticlesController');
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::get('/logout', 'Auth\LoginController@logout');
 
