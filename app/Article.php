@@ -26,4 +26,15 @@ class Article extends Model
     public function scopePublished($query){
         $query->where('published_at', '<=', Carbon::now());
     }
+
+    /**
+     * 声明Eloquent的关系多对多
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        //return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+
 }

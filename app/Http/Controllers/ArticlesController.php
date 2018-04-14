@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\Resource;
-use Carbon\Carbon;
+//use Carbon\Carbon;
 use App\Http\Requests;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class ArticlesController extends Controller
 {
@@ -53,7 +57,12 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        //return view('articles.create');
+        //$tags = Tag::all();
+        //$tags = Tag::list('name', 'id');  //lists 在5.3中弃用
+        $tags = Tag::orderBy('id')->pluck('name', 'id');
+        //为了在界面中显示标签name，id为了在保存文章的时候使用。
+        return view('articles.create',compact('tags'));
     }
 
     /**
@@ -76,7 +85,11 @@ class ArticlesController extends Controller
     }
     */
     public function store(Requests\CreateArticleRequest $request){
-        Article::create($request->all()); //在model中预处理published_at
+        //dd($request->all());
+        //Article::create($request->all()); //在model中预处理published_at
+        $input = $request->all();
+        $article = Article::create($input);
+        $article->tags()->attach($request->input('tag_list'));
         return redirect('/articles');
     }
 

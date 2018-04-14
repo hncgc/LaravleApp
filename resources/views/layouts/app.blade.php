@@ -12,6 +12,12 @@
 
     <!-- Styles -->
     <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- select2 -->
+    <link rel='stylesheet' href="/css/select2.css" type='text/css' media='all'/>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+
     <style>
         html, body {
             background-color: #fff;
